@@ -27,7 +27,7 @@ const Registration = () => {
     // Perform form validation here if needed
 
     // Send the form data to the server using Axios
-    axios.post('http://localhost:5000/register', formData)
+    axios.post('http://localhost:5001/register', formData)
       .then((response) => {
         // Handle the response from the server if needed
         console.log('Form submitted successfully!', response.data);
@@ -48,7 +48,7 @@ const Registration = () => {
 
   return (
     <div className="container">
-      <h1 className="mt-4"  style={{color: '#088178' }}>REGISTRATION FORM</h1>
+      <h1 className="mt-4" style={{ color: '#088178' }}>REGISTRATION FORM</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name:</label>

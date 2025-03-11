@@ -5,7 +5,7 @@ import cors from "cors";
 import registrationRoutes from "./routes/registrationRoutes.js";
 
 const app = express();
-const connectionURL = "mongodb+srv://Naima019:Naima_019@cluster0.zyy6urk.mongodb.net/?retryWrites=true&w=majority"; // Provide the correct database name here
+const connectionURL = process.env.MONGO_URI;
 const port = process.env.PORT || 5001;
 
 mongoose

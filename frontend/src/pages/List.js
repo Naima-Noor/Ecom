@@ -6,7 +6,7 @@ const List = () => {
 
   useEffect(() => {
     // Fetch data from the server using Axios
-    axios.get('http://localhost:5000/getApplicant')
+    axios.get('http://localhost:5001/getApplicant')
       .then((response) => {
         // Update the 'users' state with the fetched data
         setUsers(response.data);
@@ -23,12 +23,12 @@ const List = () => {
         <thead className="thead-light">
           <tr >
             <th style={{ color: '#088178' }}>Name</th>
-            <th  style={{ color: '#088178' }}>Father's Name</th>
+            <th style={{ color: '#088178' }}>Father's Name</th>
             <th style={{ color: '#088178' }}>Contact Number</th>
             <th style={{ color: '#088178' }}>Email</th>
             <th style={{ color: '#088178' }}>Address</th>
             <th style={{ color: '#088178' }}>Gender</th>
-            <th style={{ color: '#088178' }}s>Description</th>
+            <th style={{ color: '#088178' }} s>Description</th>
           </tr>
         </thead>
         <tbody>
