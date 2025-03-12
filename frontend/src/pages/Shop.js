@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faLongArrowAltRight } from "@fortawesome/free-solid-svg-icons";
+import API_URL from "./config";
 
 function ShopPage() {
   const [products, setProducts] = useState([]);
@@ -9,7 +10,7 @@ function ShopPage() {
   const productsPerPage = 8;
 
   useEffect(() => {
-    fetch("http://localhost:5001/api/products")
+    fetch(`${API_URL}/api/products`)
       .then((response) => response.json())
       .then((data) => {
         console.log("Fetched Products:", data);
@@ -40,7 +41,7 @@ function ShopPage() {
           {currentProducts.map((product) => ( // ✅ Fix: Use currentProducts instead of products
             <div key={product.id} className="pro p-4 border rounded shadow">
               <img
-                src={`http://localhost:5001${product.image_url}`}
+                src={`${API_URL}${product.image_url}`}
                 alt={product.name}
                 className="w-full h-40 object-cover mb-2"
               />
@@ -63,7 +64,7 @@ function ShopPage() {
         </div>
       </section>
 
-      
+
       <section id="pagination">
         {[...Array(totalPages)].map((_, index) => (
           <Link
@@ -83,7 +84,7 @@ function ShopPage() {
         )}
       </section>
 
-      
+
     </React.Fragment>
   );
 }

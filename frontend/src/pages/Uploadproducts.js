@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import API_URL from "./config";
 function UploadProducts() {
   const [products, setProducts] = useState([]);
   const [formData, setFormData] = useState({
@@ -16,7 +16,8 @@ function UploadProducts() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/products");
+      const response = await axios.get(`${API_URL}/api/products`);
+
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -47,7 +48,7 @@ function UploadProducts() {
     data.append("image", formData.image);
 
     try {
-      await axios.post("http://localhost:5001/api/products", data, {
+      await axios.post(`${API_URL}/api/products`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("Product added successfully!");
@@ -98,20 +99,30 @@ function UploadProducts() {
       </form>
 
       <h2 className="text-2xl font-bold mb-4">Products</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {products.map((product) => (
-          <div key={product.id} className="p-4 border rounded shadow">
-            <img
-              src={`http://localhost:5001${product.image_url}`}
-              alt={product.name}
-              className="w-full h-40 object-cover mb-2"
-            />
-            <h3 className="text-xl font-bold">{product.name}</h3>
-            <p>{product.description}</p>
-            <p className="text-lg font-semibold">${product.price}</p>
-          </div>
-        ))}
-      </div>
+
+      <section id="product1" className="section-p1">
+        <div className="pro-container grid grid-cols-1 md:grid-cols-3 gap-2">
+          {products.map((product) => (
+            <div key={product.id} className="pro p-4 border rounded shadow">
+              <img
+                src={`http://localhost:5000${product.image_url}`}
+                alt={product.name}
+                className="w-full h-40 object-cover mb-2"
+              />
+              <div className="des">
+                <h5>{product.name}</h5>
+                <p>{product.description}</p>
+                <div className="price-cart">
+                  <h4 style={{ color: "#088178" }}>Pkr {product.price}</h4>
+
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+
     </div>
   );
 }

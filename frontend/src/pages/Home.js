@@ -64,10 +64,15 @@ function FeaturedProductSection() {
 
 function FeaturedProducts() {
   return (
-    <section id="product1" className="section-p1">
+    <section >
       <h2>Featured Products</h2>
-      <p>New Modern Designs</p>
- <ShopPage/>
+      <p style={{
+        fontSize: '20px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>New Modern Designs</p>
+      <ShopPage />
     </section>
   );
 }
