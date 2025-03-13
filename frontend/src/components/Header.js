@@ -27,8 +27,8 @@ function Header() {
         <li><Link to="/ContactSection" className={location.pathname === "/ContactSection" ? "active" : ""}>Contact</Link></li>
         {/* <li><Link to="/Registration" className={location.pathname === "/Registration" ? "active" : ""}>Register</Link></li>
         <li><Link to="/List" className={location.pathname === "/List" ? "active" : ""}>List</Link></li> */}
-        <li><Link to="/Login"><FontAwesomeIcon icon={faUser} style={{ fontSize: "15px" }} /></Link></li>
-        <li><Link to="/CartSection"><FontAwesomeIcon icon={faShoppingCart} style={{ fontSize: "15px" }} /></Link></li>
+        <li><Link to="/Login" className={location.pathname === "/Login" ? "active" : ""}><FontAwesomeIcon icon={faUser} style={{ fontSize: "15px" }} /></Link></li>
+        <li><Link to="/CartSection" className={location.pathname === "/CartSection" ? "active" : ""}><FontAwesomeIcon icon={faShoppingCart} style={{ fontSize: "15px" }} /></Link></li>
       </ul>
     </div>
   );
