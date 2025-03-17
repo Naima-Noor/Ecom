@@ -29,7 +29,8 @@ function App() {
         <Route path="/BlogPage" element={<BlogPage />} />
         <Route path="/ContactSection" element={<ContactSection />} />
         <Route path="/Login" element={<Login />} />
-        <Route path="/CartSection" element={<CartSection />} />
+        <Route path="/cart/:id" element={<CartSection />} />
+
         <Route path="/UploadProducts" element={<UploadProducts />} />
       </Routes>
       <Footer />

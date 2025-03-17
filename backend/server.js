@@ -99,6 +99,24 @@ app.post("/api/products", upload.single("image"), async (req, res) => {
     }
 });
 
+// Get Product by ID
+app.get("/api/products/:id", async (req, res) => {
+    try {
+        const { id } = req.params;  // Extract product ID from the request URL
+        const result = await pool.query("SELECT * FROM products WHERE id = $1", [id]);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Product not found" });
+        }
+
+        res.json(result.rows[0]);  // Send the product details
+    } catch (error) {
+        console.error("❌ Error fetching product by ID:", error);
+        res.status(500).json({ error: "Database error" });
+    }
+});
+
+
 // Start Server
 app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);

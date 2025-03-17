@@ -5,6 +5,7 @@ const getAllProducts = async (req, res) => {
     try {
         const result = await pool.query("SELECT * FROM products");
         res.json(result.rows);
+
     } catch (error) {
         console.error("Error fetching products:", error);
         res.status(500).json({ error: "Database error" });
@@ -33,4 +34,22 @@ const addProduct = async (req, res) => {
     }
 };
 
-module.exports = { getAllProducts, addProduct };
+const getProductById = async (req, res) => {
+    try {
+        const { id } = req.params;  // Get the product ID from the URL
+        const result = await pool.query("SELECT * FROM products WHERE id = $1", [id]);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Product not found" });
+        }
+
+        res.json(result.rows[0]); // Send product details back
+    } catch (error) {
+        console.error("Error fetching product by ID:", error);
+        res.status(500).json({ error: "Database error" });
+    }
+};
+
+
+
+module.exports = { getAllProducts, addProduct , getProductById};

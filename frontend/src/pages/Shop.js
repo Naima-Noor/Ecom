@@ -50,13 +50,14 @@ function ShopPage() {
                 <p>{product.description}</p>
                 <div className="price-cart">
                   <h4 style={{ color: "#088178" }}>Pkr {product.price}</h4>
-                  <Link to="/cart">
-                    <FontAwesomeIcon
-                      icon={faShoppingCart}
-                      className="cart"
-                      style={{ fontSize: "20px", color: "#088178" }}
-                    />
-                  </Link>
+                  <Link to={`/cart/${product.id}`}>
+  <FontAwesomeIcon
+    icon={faShoppingCart}
+    className="cart"
+    style={{ fontSize: "20px", color: "#088178" }}
+  />
+</Link>
+
                 </div>
               </div>
             </div>

@@ -793,7 +793,7 @@ button[type="submit"]:hover {
 }
 
 #cart table tbody tr td {
-    padding-top: 15px;
+    /* padding-top: 15px; */
 }
 
 #cart table tbody td {
