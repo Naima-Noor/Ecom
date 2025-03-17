@@ -13,6 +13,8 @@ const PORT = process.env.PORT || 5001;
 app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+const jwt = require("jsonwebtoken");
+const authRoutes = require("./routes/authRoutes");
 
 // PostgreSQL Connection
 const pool = new Pool({
@@ -114,6 +116,26 @@ app.get("/api/products/:id", async (req, res) => {
         console.error("❌ Error fetching product by ID:", error);
         res.status(500).json({ error: "Database error" });
     }
+});
+const authMiddleware = (req, res, next) => {
+    const token = req.header("Authorization");
+    if (!token) return res.status(401).json({ message: "Access Denied" });
+
+    try {
+        const verified = jwt.verify(token.replace("Bearer ", ""), process.env.JWT_SECRET);
+        req.user = verified;
+        next();
+    } catch (error) {
+        res.status(400).json({ message: "Invalid Token" });
+    }
+};
+
+// Using Routes
+app.use("/api/auth", authRoutes);
+
+// Example of a protected route directly in server.js
+app.get("/api/protected", authMiddleware, (req, res) => {
+    res.json({ message: "This is a protected route", user: req.user });
 });
 
 
