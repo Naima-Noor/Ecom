@@ -14,7 +14,7 @@ import CartSection from './pages/cart';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import UploadProducts from './pages/Uploadproducts';
-
+import Signup from './pages/Signup';
 function App() {
   return (
     <div>
@@ -29,6 +29,7 @@ function App() {
         <Route path="/BlogPage" element={<BlogPage />} />
         <Route path="/ContactSection" element={<ContactSection />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
         <Route path="/cart/:id" element={<CartSection />} />
 
         <Route path="/UploadProducts" element={<UploadProducts />} />

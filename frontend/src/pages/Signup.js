@@ -4,8 +4,8 @@ import l2 from "./images/l2.png";
 import l3 from "./images/l3.png";
 import l4 from "./images/l4.png";
 import { Link } from 'react-router-dom';
-function Login() {
-    const images = [l4, l3, l2, l1]; // Imported images
+function Signup() {
+    const images = [l1, l2, l3, l4]; // Imported images
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
@@ -25,11 +25,11 @@ function Login() {
                 </div>
                 <div className="grid-item">
 
-                    <Link to="/Signup" style={{ fontSize: '14px' }}>Don't have an account? Signup</Link>
+                    <Link to="/Login" style={{ fontSize: '14px' }}>Already have an account? Login</Link>
                 </div>
             </div>
         </div>
     );
 }
 
-export default Login;
+export default Signup;
