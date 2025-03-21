@@ -17,7 +17,7 @@ function Login() {
     });
     const [message, setMessage] = useState(""); // For displaying success or error messages
     const navigate = useNavigate();
-
+    const [isSuccess, setIsSuccess] = useState(false);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -25,30 +25,37 @@ function Login() {
         }, 3000);
         return () => clearInterval(interval);
     }, []);
+
+
     // Handle input change
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        if (!formData.email || !formData.password) {
+            setMessage("❌ All fields are required!");
+            setIsSuccess(false);
+            return;
+        }
 
         try {
-            const response = await axios.post("http://localhost:5000/api/auth/login", {
+            const response = await axios.post("http://localhost:5000/api/auth/login", formData);
 
-                email: formData.email,
-                password: formData.password,
-            }, navigate("/Home"));
+            // ✅ Save token to localStorage
+            localStorage.setItem("token", response.data.token);
 
-            setMessage(response.data.message);
-            setFormData({ name: "", email: "", password: "", confirmPassword: "" });
+            setMessage("✅ Login successful! Redirecting...");
+            setTimeout(() => navigate("/Profile"), 3000);
+            setIsSuccess(true);
         } catch (error) {
-            setMessage(error.response?.data?.message || "An error occurred");
+            setMessage(error.response?.data?.message || "❌ An error occurred!");
+            setIsSuccess(false);
         }
-    };
+    }
+
 
     return (
         <div style={{ padding: '30px' }}>
@@ -87,7 +94,7 @@ function Login() {
                         </div>
                     </div> */}
 
-                    <form onSubmit={handleSubmit} className="space-y-2">
+                    <form onSubmit={handleSubmit} style={{ width: '80%' }} bf>
 
 
                         <div>
@@ -123,7 +130,25 @@ function Login() {
                         >
                             Login
                         </button>
-                        {message && <p className="text-center text-red-500">{message}</p>}
+                        {message && (
+                            <p
+                                style={{
+                                    padding: "10px",
+                                    borderRadius: "5px",
+                                    fontSize: "14px",
+                                    fontWeight: "bold",
+                                    color: isSuccess ? "#155724" : "#721c24",
+                                    backgroundColor: isSuccess ? "#d4edda" : "#f8d7da",
+                                    border: `1px solid ${isSuccess ? "#c3e6cb" : "#f5c6cb"}`,
+                                    textAlign: "center",
+                                    marginTop: "10px"
+                                }}
+                            >
+                                {message}
+                            </p>
+                        )}
+
+
                     </form>
 
 

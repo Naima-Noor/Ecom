@@ -15,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import UploadProducts from './pages/Uploadproducts';
 import Signup from './pages/Signup';
+import Profile from './pages/Profile';
 function App() {
   return (
     <div>
@@ -30,6 +31,7 @@ function App() {
         <Route path="/ContactSection" element={<ContactSection />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
+        <Route path="/Profile" element={<Profile />} />
         <Route path="/cart/:id" element={<CartSection />} />
 
         <Route path="/UploadProducts" element={<UploadProducts />} />
